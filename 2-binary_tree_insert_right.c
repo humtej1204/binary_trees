@@ -16,22 +16,17 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 	if (parent == NULL)
 		return (NULL);
 
-	leaf = malloc(sizeof(binary_tree_t));
-	if (leaf == NULL)
-		return (NULL);
-	leaf->n = value;
+	leaf = binary_tree_node(parent, value);
 
 	if (parent->right == NULL)
 	{
 		parent->right = leaf;
-		leaf->parent = parent;
 	}
 	else
 	{
 		tmp = parent->right;
-		parent->right = leaf;
-		leaf->parent = parent;
 		leaf->right = tmp;
+		parent->right = leaf;
 		tmp->parent = leaf;
 	}
 
